@@ -8,4 +8,4 @@ toolbox.precache([
 
 toolbox.router.default = toolbox.networkFirst;
 
-toolbox.router.get('/*', toolbox.cacheFirst, { origin: 'http://www.blogcdn.com' });
+toolbox.router.get('/*', toolbox.cacheFirst, { origin: 'https://images.weserv.nl' });

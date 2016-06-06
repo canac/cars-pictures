@@ -8,7 +8,7 @@ const imgsPromise = imagesPromise
   .then(images =>
     images.map(url => {
       const img = new Image();
-      img.src = url;
+      img.src = `https://images.weserv.nl/?url=${url.replace(/^https?:\/\//, '')}`;
       img.classList.add('item');
       return img;
     })
