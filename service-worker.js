@@ -1,10 +1,9 @@
 importScripts('node_modules/sw-toolbox/sw-toolbox.js');
 
 toolbox.precache([
-  '/',
-  '/app.js',
-  '/styles.css',
-  '/images.json',
+  'app.js',
+  'styles.css',
+  'images.json',
 ]);
 
 toolbox.router.default = toolbox.networkFirst;

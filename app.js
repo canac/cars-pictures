@@ -1,8 +1,8 @@
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js');
+  navigator.serviceWorker.register('service-worker.js');
 }
 
-const imagesPromise = fetch('/images.json')
+const imagesPromise = fetch('images.json')
   .then(res => res.json());
 const imgsPromise = imagesPromise
   .then(images =>
