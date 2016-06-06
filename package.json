@@ -1,0 +1,10 @@
+{
+  "name": "cars-pictures",
+  "version": "1.0.0",
+  "description": "Cars pictures app",
+  "author": "Caleb Cox <calebcox314@gmail.com>",
+  "dependencies": {
+    "sw-toolbox": "^3.1.1"
+  },
+  "license": "MIT"
+}
