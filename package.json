@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Cars pictures app",
   "author": "Caleb Cox <calebcox314@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/canac/cars-pictures.git"
+  },
   "dependencies": {
     "sw-toolbox": "^3.1.1"
   },
