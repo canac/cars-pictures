@@ -1,24 +1,24 @@
+import { Observable } from '@reactivex/rxjs/dist/es6/Observable.js';
+import '@reactivex/rxjs/dist/es6/add/observable/from.js';
+import '@reactivex/rxjs/dist/es6/add/observable/fromEvent.js';
+import '@reactivex/rxjs/dist/es6/add/observable/combineLatest.js';
+import '@reactivex/rxjs/dist/es6/add/operator/map.js';
+import '@reactivex/rxjs/dist/es6/add/operator/mergeMap.js';
+
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js');
 }
 
-const imagesPromise = fetch('images.json')
-  .then(res => res.json());
-const imgsPromise = imagesPromise
-  .then(images =>
-    images.map(url => {
-      const img = new Image();
-      img.src = `https://images.weserv.nl/?url=${url.replace(/^https?:\/\//, '')}`;
-      img.classList.add('item');
-      return img;
-    })
-  );
-const readyPromise = new Promise(resolve =>
-  document.addEventListener('DOMContentLoaded', resolve)
-);
-const containerPromise = readyPromise
-  .then(() => document.getElementById('container'));
+const imgsObservable = Observable.from(fetch('images.json').then(res => res.json()))
+  .mergeMap(images => Observable.from(images))
+  .map(url => {
+    const img = new Image();
+    img.src = `https://images.weserv.nl/?url=${url.replace(/^https?:\/\//, '')}`;
+    img.classList.add('item');
+    return img;
+  });
+const containerObservable = Observable.fromEvent(document, 'DOMContentLoaded')
+  .map(() => document.getElementById('container'));
 
-Promise.all([imgsPromise, containerPromise]).then(([imgs, container]) =>
-  imgs.forEach(img => container.appendChild(img))
-);
+Observable.combineLatest(imgsObservable, containerObservable)
+  .subscribe(([img, container]) => container.appendChild(img));
